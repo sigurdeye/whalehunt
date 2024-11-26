@@ -1,0 +1,676 @@
+:root {
+    --primary-color: #ff4b6e;
+    --secondary-color: #4ecdc4;
+    --background-dark: #1a1a1a;
+    --text-light: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--background-dark);
+    color: var(--text-light);
+    min-height: 100vh;
+}
+
+/* Landing Page Styles */
+.landing-page {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(
+        45deg,
+        #ff4b6e,
+        #ff758c,
+        #ff8fa3,
+        #ffa4b5,
+        #ffb9c7
+    );
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.landing-content {
+    max-width: 800px;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.landing-content h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    line-height: 1.2;
+}
+
+.landing-content h2 {
+    font-size: 2.2rem;
+    margin-bottom: 2.5rem;
+    font-family: 'Montserrat', sans-serif;
+    opacity: 0.9;
+}
+
+.cta-button {
+    padding: 1.2rem 2.5rem;
+    font-size: 1.3rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    letter-spacing: 1px;
+    background: white;
+    color: var(--primary-color);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-button:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 5px 20px rgba(255, 75, 110, 0.4);
+    background: var(--primary-color);
+    color: white;
+}
+
+.button-heart {
+    margin-left: 10px;
+    display: inline-block;
+    animation: heartBeat 1.5s ease-in-out infinite;
+}
+
+@keyframes heartBeat {
+    0% { transform: scale(1); }
+    14% { transform: scale(1.3); }
+    28% { transform: scale(1); }
+    42% { transform: scale(1.3); }
+    70% { transform: scale(1); }
+}
+
+.floating-items-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.floating-item {
+    position: absolute;
+    font-size: 24px;
+    animation: floatingItem 8s linear infinite;
+    opacity: 0.6;
+}
+
+/* Position items at different starting points */
+.floating-item:nth-child(1) { left: 10%; animation-delay: 0s; }
+.floating-item:nth-child(2) { left: 25%; animation-delay: 1s; }
+.floating-item:nth-child(3) { left: 40%; animation-delay: 2s; }
+.floating-item:nth-child(4) { left: 55%; animation-delay: 3s; }
+.floating-item:nth-child(5) { left: 70%; animation-delay: 4s; }
+.floating-item:nth-child(6) { left: 85%; animation-delay: 5s; }
+.floating-item:nth-child(7) { left: 30%; animation-delay: 6s; }
+.floating-item:nth-child(8) { left: 60%; animation-delay: 7s; }
+
+@keyframes floatingItem {
+    0% {
+        transform: translateY(100vh) rotate(0deg) scale(1);
+        opacity: 0.6;
+    }
+    50% {
+        transform: translateY(50vh) rotate(180deg) scale(1.2);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(-20vh) rotate(360deg) scale(1);
+        opacity: 0;
+    }
+}
+
+/* Remove the old heart-specific styles */
+.hearts-container, .heart {
+    display: none;
+}
+
+/* Update the dating interface pseudo-elements */
+.dating-interface::before {
+    content: '🍔';
+}
+
+.dating-interface::after {
+    content: '🍕';
+}
+
+.card-stack {
+    position: relative;
+    width: 400px;
+    height: 600px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    z-index: 5;
+}
+
+.card {
+    position: absolute;
+    width: 360px;
+    height: 560px;
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    cursor: grab;
+    transition: transform 0.3s ease;
+    user-select: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    pointer-events: none;
+}
+
+/* Match Overlay Styles */
+.match-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.match-content {
+    text-align: center;
+}
+
+.match-content h2 {
+    font-size: 4rem;
+    color: var(--primary-color);
+    animation: glow 1.5s ease-in-out infinite alternate;
+    margin-bottom: 20px;
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px var(--primary-color);
+    }
+    to {
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px var(--primary-color);
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+/* Message Notification Styles */
+.notification-bubble {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--primary-color);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    animation: bounce 1s ease infinite;
+    z-index: 900;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+/* Message Overlay Styles */
+.message-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.message-content {
+    background: white;
+    width: 90%;
+    max-width: 400px;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.message-header {
+    background: var(--primary-color);
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.message-header h3 {
+    margin: 0;
+}
+
+.close-message {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.message-body {
+    padding: 20px;
+    color: #333;
+}
+
+.message-body p {
+    margin: 0;
+    font-size: 1.1rem;
+    line-height: 1.4;
+}
+
+/* Update the card-info styles */
+.card-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    background: linear-gradient(transparent, rgba(0,0,0,0.9));
+    color: white;
+    text-align: left;
+}
+
+.card-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.card-info p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem;
+    opacity: 0.9;
+    font-weight: 500;
+}
+
+.match-profile {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.match-profile img {
+    width: 80vw;
+    max-width: 500px;
+    height: auto;
+    border-radius: 15px;
+    margin-bottom: 15px;
+}
+
+.match-profile p {
+    font-size: 2rem;
+    color: white;
+    margin-top: 10px;
+}
+
+.message-notification {
+    position: fixed;
+    right: 20px;
+    background: var(--primary-color);
+    color: white;
+    padding: 15px 25px;
+    border-radius: 25px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    animation: slideIn 0.5s ease-out;
+    z-index: 1000;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: bottom 0.3s ease;
+}
+
+.message-notification.fade-out {
+    animation: slideOut 0.5s ease-in;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+.chat-overlay {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 300px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    z-index: 1000;
+    animation: slideUp 0.3s ease-out;
+    cursor: move;
+}
+
+.chat-header {
+    background: var(--primary-color);
+    color: white;
+    padding: 15px;
+    border-radius: 15px 15px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: move;
+    user-select: none;
+}
+
+.chat-header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.close-chat {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 0 5px;
+}
+
+.chat-body {
+    padding: 15px;
+    max-height: 300px;
+    overflow-y: auto;
+    background: #f5f5f5;
+    border-radius: 0 0 15px 15px;
+}
+
+.message-bubble {
+    background: var(--primary-color);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    max-width: 80%;
+    margin-left: auto;
+}
+
+.message-bubble p {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.match-name {
+    font-size: 3rem;
+    color: var(--text-light);
+    margin-bottom: 20px;
+    animation: nameGlow 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes nameGlow {
+    from {
+        text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px var(--secondary-color);
+    }
+    to {
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px var(--secondary-color);
+    }
+}
+
+/* Add these animations to your existing CSS */
+@keyframes fadeOutLeft {
+    from {
+        opacity: 1;
+        transform: translateX(0) rotate(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(-200%) rotate(-30deg);
+    }
+}
+
+@keyframes fadeOutRight {
+    from {
+        opacity: 1;
+        transform: translateX(0) rotate(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(200%) rotate(30deg);
+    }
+}
+
+.fade-out-left {
+    animation: fadeOutLeft 0.5s ease-out forwards;
+}
+
+.fade-out-right {
+    animation: fadeOutRight 0.5s ease-out forwards;
+}
+
+.app-title {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    color: rgba(255, 255, 255, 0.15);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.card-info .interests {
+    margin-top: 5px;
+}
+
+.card-info .interests p {
+    font-size: 1rem;
+    opacity: 0.8;
+    margin-bottom: 5px;
+}
+
+.card-info .interest {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 1rem;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.card-info .weight {
+    font-size: 1.4rem;
+    color: var(--primary-color);
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.unmatch-message {
+    text-align: center;
+    color: #666;
+    font-size: 0.9rem;
+    margin-top: 15px;
+    font-style: italic;
+}
+
+/* Update Dating Interface Styles */
+.dating-interface {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(
+        45deg,
+        #ff4b6e,
+        #ff758c,
+        #ff8fa3,
+        #ffa4b5,
+        #ffb9c7
+    );
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Keep the same gradient animation as landing page */
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.matches-counter {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 1.5rem;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    z-index: 5;
+}
+
+.whale-emoji {
+    font-size: 1.8rem;
+    animation: bounce 2s ease-in-out infinite;
+}
+
+.card-info .bio {
+    font-size: 1rem;
+    line-height: 1.4;
+    margin: 10px 0;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.landing-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 5rem;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-bottom: 2rem;
+    text-shadow: 
+        0 0 10px rgba(255, 255, 255, 0.8),
+        0 0 20px rgba(255, 255, 255, 0.8),
+        0 0 30px var(--primary-color),
+        0 0 40px var(--primary-color);
+    animation: logoGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes logoGlow {
+    from {
+        text-shadow: 
+            0 0 10px rgba(255, 255, 255, 0.8),
+            0 0 20px rgba(255, 255, 255, 0.8),
+            0 0 30px var(--primary-color),
+            0 0 40px var(--primary-color);
+    }
+    to {
+        text-shadow: 
+            0 0 20px rgba(255, 255, 255, 0.8),
+            0 0 30px rgba(255, 255, 255, 0.8),
+            0 0 40px var(--primary-color),
+            0 0 50px var(--primary-color),
+            0 0 60px var(--primary-color);
+    }
+}
+
+.landing-title {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+/* Update existing landing content styles */
+.landing-content h3 {
+    font-size: 2.2rem;
+    margin-bottom: 2.5rem;
+    font-family: 'Montserrat', sans-serif;
+    opacity: 0.9;
+}
+ 

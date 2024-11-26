@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhaleHunt - Find Your Perfect Match</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Landing Page -->
+    <div class="landing-page" id="landingPage">
+        <div class="landing-content">
+            <h1 class="landing-logo">WhaleHunt</h1>
+            <div class="floating-items-container">
+                <span class="floating-item">❤️</span>
+                <span class="floating-item">🍔</span>
+                <span class="floating-item">🍕</span>
+                <span class="floating-item">🍟</span>
+                <span class="floating-item">❤️</span>
+                <span class="floating-item">🌮</span>
+                <span class="floating-item">🍗</span>
+                <span class="floating-item">🍪</span>
+            </div>
+            <h2 class="landing-title">Tired of dating women who run away from you?</h2>
+            <h3>Say no more!</h3>
+            <button id="startButton" class="cta-button">
+                YES, HELP ME! <span class="button-heart">❤️</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Dating Interface (initially hidden) -->
+    <div class="dating-interface hidden" id="datingInterface">
+        <h1 class="app-title">WhaleHunt</h1>
+        <div class="floating-items-container">
+            <span class="floating-item">🍔</span>
+            <span class="floating-item">🍕</span>
+            <span class="floating-item">🍟</span>
+            <span class="floating-item">🌮</span>
+            <span class="floating-item">🍗</span>
+            <span class="floating-item">🍪</span>
+        </div>
+        <div class="card-stack" id="cardStack">
+            <!-- Cards will be dynamically inserted here -->
+        </div>
+        <div class="matches-counter">
+            <span class="whale-emoji">🐋</span>
+            <span id="matchCount">0</span>
+        </div>
+        
+        <!-- Match Overlay -->
+        <div class="match-overlay hidden" id="matchOverlay">
+            <div class="match-content">
+                <h2>IT'S A MATCH!</h2>
+                <div class="match-profile">
+                    <h3 id="matchName" class="match-name"></h3>
+                    <img id="matchImage" src="" alt="Match">
+                    <p id="matchDetails"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chat Overlay -->
+    <div class="chat-overlay hidden" id="chatOverlay">
+        <div class="chat-content">
+            <div class="chat-header">
+                <h3 id="chatName"></h3>
+                <button class="close-chat">×</button>
+            </div>
+            <div class="chat-body">
+                <div class="message-bubble">
+                    <p id="chatMessage"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html> 
